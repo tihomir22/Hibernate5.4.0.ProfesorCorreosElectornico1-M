@@ -5,6 +5,7 @@
  */
 package app;
 
+import model.Direccion;
 import model.Profesor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,38 +21,38 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-          //CREAMOS CONEXION
+        //CREAMOS CONEXION
         //SessionFactory sessionFactory;
         //Configuration configuration = new Configuration();
         //configuration.configure();
         //sessionFactory = configuration.buildSessionFactory();
-        SessionFactory factory = new Configuration().configure().buildSessionFactory(); 
-        
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+
         // CREAMOS UN OBJETO
-        Profesor profesor=new Profesor(7,"Pepe","Garcia","Perez");
-        
+        Direccion dir = new Direccion(8, "Calle la reina", 5, "Xativa", "Valencia");
+        Profesor profesor = new Profesor(17, "Pepe", "Garcia", "Perez");
+        profesor.setDireccion(dir);
         //CREAR UNA SESION
-        Session session=factory.openSession();
+        Session session = factory.openSession();
         session.beginTransaction();
-        
+
         //GUARDAR OBJETO
-        session.save(profesor);
-        
-        Profesor profesor2=session.get(Profesor.class, 1);
-        
+        session.saveOrUpdate(profesor);
+
+        Profesor profesor2 = session.get(Profesor.class, 1);
+
         profesor.setNombre("Jorge");
         session.update(profesor);
-        
+
         session.delete(profesor);
-        
+
         session.saveOrUpdate(profesor);
-        
+
         //CERRAR CONEXION
         session.getTransaction().commit();
         session.close();
         factory.close();
-        
-        
+
     }
-    
+
 }
