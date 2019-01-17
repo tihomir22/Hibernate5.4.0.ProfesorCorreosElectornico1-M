@@ -9,5 +9,12 @@
         <property name="ape2"></property>
     
         <one-to-one name="direccion" cascade="all"/>
+        
+        <set name="correosElectronicos" cascade="all" inverse="true">
+            <key>
+                <column name="idProfesor"/>
+            </key>
+            <one-to-many class="model.CorreoElectronico"/>
+        </set>
     </class>
 </hibernate-mapping>

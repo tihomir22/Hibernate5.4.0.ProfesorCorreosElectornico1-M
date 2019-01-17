@@ -6,17 +6,20 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  *
  * @author mati
  */
 public class Profesor implements Serializable {
+
     private int id;
     private String nombre;
     private String ape1;
     private String ape2;
     Direccion direccion;
+    private Set<CorreoElectronico> correosElectronicos;
 
     public Profesor() {
     }
@@ -36,8 +39,13 @@ public class Profesor implements Serializable {
         this.direccion = direccion;
     }
 
-   
-    
+    public Set<CorreoElectronico> getCorreosElectronicos() {
+        return correosElectronicos;
+    }
+
+    public void setCorreosElectronicos(Set<CorreoElectronico> correosElectronicos) {
+        this.correosElectronicos = correosElectronicos;
+    }
 
     public int getId() {
         return id;
@@ -70,7 +78,5 @@ public class Profesor implements Serializable {
     public void setApe2(String ape2) {
         this.ape2 = ape2;
     }
-    
-    
-    
+
 }
